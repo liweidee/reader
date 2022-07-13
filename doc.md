@@ -45,13 +45,11 @@
 
 数据存储目录结构如下：
 
-> 书籍缓存目录由 `书名` 变为 `书名_作者名`，这个变动需要手动编辑，否则书籍书源列表缓存信息无法使用
-
 ```bash
 storage
 ├── assets                                        # 静态资源
-│   |── covers                                    # 本地 epub 书籍的封面图片目录
 │   ├── hector                                    # 用户 hector 的资源目录
+│   |   |── covers                                # 本地 epub 书籍的封面图片目录
 │   │   ├── background                            # 自定义阅读背景图片保存目录
 │   │   │   └── 6.jpg
 │   └── reader.css                                # 自定义CSS样式文件
@@ -331,8 +329,8 @@ server {
 
     location / {
         proxy_pass  http://127.0.0.1:4396; #端口自行修改为映射端口
-        proxy_http_version	1.1;
-        proxy_cache_bypass	$http_upgrade;
+        proxy_http_version 1.1;
+        proxy_cache_bypass $http_upgrade;
         proxy_set_header Upgrade           $http_upgrade;
         proxy_set_header Connection        "upgrade";
         proxy_set_header Host              $host;
